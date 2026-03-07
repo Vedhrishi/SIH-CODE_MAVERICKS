@@ -4,9 +4,10 @@ import { useTranslation } from '../hooks/useTranslation';
 
 interface WelcomePageProps {
   onStartApplication: () => void;
+  onLearnMore: () => void;
 }
 
-const WelcomePage: React.FC<WelcomePageProps> = ({ onStartApplication }) => {
+const WelcomePage: React.FC<WelcomePageProps> = ({ onStartApplication, onLearnMore }) => {
   const { t } = useTranslation();
 
   const features = [
@@ -40,7 +41,11 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onStartApplication }) => {
                 <ArrowRight className="h-5 w-5" />
               </button>
               
-              <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-medium text-lg hover:border-gray-400 transition-all duration-200">
+              <button 
+                onClick={onLearnMore}
+                className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-medium text-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
+                aria-label="Learn more about our college and team"
+              >
                 {t('learnMore')}
               </button>
             </div>

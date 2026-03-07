@@ -3,6 +3,7 @@ import LanguageSelector from './components/LanguageSelector';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 import WelcomePage from './components/WelcomePage';
+import AboutPage from './components/AboutPage';
 import AdmissionPage from './components/AdmissionPage';
 import DocumentsPage from './components/DocumentsPage';
 import ChatbotPage from './components/ChatbotPage';
@@ -46,6 +47,14 @@ function App() {
   const handleStartApplication = () => {
     setCurrentStep('admission');
     handleStepComplete('welcome');
+  };
+
+  const handleLearnMore = () => {
+    setCurrentStep('about');
+  };
+
+  const handleBackToWelcome = () => {
+    setCurrentStep('welcome');
   };
 
   const handleAdmissionNext = (data: { selectedQuota: string; selectedBranch: string }) => {
@@ -101,7 +110,14 @@ function App() {
       
       <main className="pb-8">
         {currentStep === 'welcome' && (
-          <WelcomePage onStartApplication={handleStartApplication} />
+          <WelcomePage 
+            onStartApplication={handleStartApplication} 
+            onLearnMore={handleLearnMore}
+          />
+        )}
+        
+        {currentStep === 'about' && (
+          <AboutPage onBack={handleBackToWelcome} />
         )}
         
         {currentStep === 'admission' && (
